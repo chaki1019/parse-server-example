@@ -2,6 +2,7 @@
 // compatible API routes.
 
 var express = require('express');
+var cors = require('cors');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 
@@ -19,6 +20,17 @@ var api = new ParseServer({
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+  },
+  javascriptKey: process.env.JAVASCRIPT_KEY || '',  //** add this line no need to set values, they will be overwritten by heroku config vars
+  restAPIKey: process.env.REST_API_KEY || '', //** add this line
+  dotNetKey: process.env.DOT_NET_KEY || '', //** add this line
+  clientKey: process.env.CLIENT_KEY || '', //** add this line
+  push: {
+    ios: {
+      pfx: 'certs/mycert.p12', // the path and filename to the .p12 file you exported earlier. 
+      bundleId: 'jp.co.orkney.upward', // The bundle identifier associated with your app
+      production: true
+    }
   }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
@@ -26,6 +38,7 @@ var api = new ParseServer({
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 
 var app = express();
+app.use(cors());
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
