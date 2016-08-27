@@ -29,6 +29,11 @@ var api = new ParseServer({
     ios: {
       pfx: 'certs/mycert.p12', // the path and filename to the .p12 file you exported earlier. 
       bundleId: 'jp.co.orkney.upward', // The bundle identifier associated with your app
+      production: true
+    },
+    ios: {
+      pfx: 'certs/mycert.p12', // the path and filename to the .p12 file you exported earlier. 
+      bundleId: 'jp.co.orkney.upward', // The bundle identifier associated with your app
       production: false
     }
   }
