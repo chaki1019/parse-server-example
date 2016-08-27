@@ -26,16 +26,15 @@ var api = new ParseServer({
   dotNetKey: process.env.DOT_NET_KEY || '', //** add this line
   clientKey: process.env.CLIENT_KEY || '', //** add this line
   push: {
-    ios: {
+    ios: [{
       pfx: 'certs/mycert.p12', // the path and filename to the .p12 file you exported earlier. 
       bundleId: 'jp.co.orkney.upward', // The bundle identifier associated with your app
       production: true
-    },
-    ios: {
+    },{
       pfx: 'certs/mycert.p12', // the path and filename to the .p12 file you exported earlier. 
       bundleId: 'jp.co.orkney.upward', // The bundle identifier associated with your app
       production: false
-    }
+    }]
   }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
